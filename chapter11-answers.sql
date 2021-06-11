@@ -43,6 +43,13 @@ WHERE cust_id in (
         )
     );
 
-
-
+# 5.
+# 我们需要一个顾客ID列表，其中包含他们已订购的总金额。编写SQL语句，返回顾客ID（Orders表中的cust_id），
+# 并使用子查询返回total_ordered以便返回每个顾客的订单总数。
+# 将结果按金额从大到小排序
+SELECT orders.cust_id,orders.order_num,SUM(quantity*item_price) as cust_total
+FROM OrderItems,Orders
+WHERE Orders.order_num = Orderitems.order_num
+GROUP BY orders.cust_id
+ORDER BY cust_total DESC;
 
